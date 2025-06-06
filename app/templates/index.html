@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Recipe Improviser</title>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(120deg, #f6d365, #fda085);
+            color: #333;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 60px auto;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            text-align: center;
+            color: #ff5722;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #ff5722;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background: #ff5722;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: #e64a19;
+        }
+
+        hr {
+            margin: 30px 0;
+            border: 0;
+            height: 1px;
+            background: #ddd;
+        }
+
+        h3 {
+            color: #4a148c;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #009688;
+            margin-top: 20px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Smart Recipe Improviser 🍳</h2>
+        <form method="post">
+            <label>What ingredients do you have?</label><br>
+            <input type="text" name="ingredients" style="width:100%" placeholder="e.g., rice, eggs, onion"><br><br>
+            <input type="submit" value="Find Recipes">
+        </form>
+        <hr>
+        {% if recipes %}
+            <h3>Top Recipe Suggestions:</h3>
+            {% for recipe in recipes %}
+                <h4>{{ recipe.name }}</h4>
+                <ul>
+                    {% for step in recipe.steps %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>
